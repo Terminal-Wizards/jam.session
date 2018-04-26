@@ -6,8 +6,8 @@ module.exports = (io) => {
       socket.emit('play')
     }
 
-    socket.on('newSound', (grid) => {
-      socket.broadcast.emit('newSound', grid)
+    socket.on('newSound', (grid, instruments) => {
+      socket.broadcast.emit('newSound', grid, instruments)
     })
 
     socket.on('disconnect', () => {
