@@ -8,22 +8,13 @@ class Tick extends Component{
     super(props)
     this.state = {
       drumTick: 225,
-      drumSound1: 70,
-      drumSound2: 80,
-      drumSound3: 100,
-      drumSound4: 175,
-      drumSound5: 75,
-      drumSound6: 65,
-      drumSound7: 62,
-      drumSound8: 52,
-      drumSound9: 5,
-      drumSound10: 10,
-      drumSound11: 20,
-      drumSound12: 45,
-      drumSound13: 1,
-      drumSound14: 15,
-      drumSound15: 35,
-      drumSound16: 55,
+      drumSounds: [[70, 80, 100, 175], [75, 65, 62, 52], [5, 10, 20, 45], [1, 15, 35, 55]],
+      instruments: [
+        [[929, [88], 1/16], [929, [91], 1/16], [929, [96], 1/16], [929, [98], 1/16]],
+        [[929, [79], 1/16], [929, [81], 1/16], [929, [84], 1/16], [929, [86], 1/16]],
+        [[929, [69], 1/16], [929, [72], 1/16], [929, [74], 1/16], [929, [76], 1/16]],
+        [[929, [60], 1/16], [929, [62], 1/16], [929, [64], 1/16], [929, [67], 1/16]]
+      ],
       tick: [true, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false],
     }
     this.play = false
@@ -33,21 +24,10 @@ class Tick extends Component{
 
   componentDidMount() {
     this.setState({ initialized: true });
-    this.playLoop()
   }
 
   componentDidUpdate(){
-    socket.emit('newSound', this.props.grid)
-    this.fillBeat()
-  }
-
-  mouseDown = async (target) => {
-    await this.setState({[target]: true})
-    this.fillBeat()
-  }
-
-  mouseUp = async (target) => {
-    await this.setState({[target]: false})
+    socket.emit('newSound', this.props.grid, this.props.instruments)
     this.fillBeat()
   }
 
@@ -56,22 +36,16 @@ class Tick extends Component{
       var drums = [];
       var instrus = []
       if (this.state.tick[i]) {drums.push(this.state.drumTick)}
-      if (this.props.grid[0][0] || (this.incoming && this.incoming[0][0])) {drums.push(this.state.drumSound1)}
-      if (this.props.grid[0][1] || (this.incoming && this.incoming[0][1])) {drums.push(this.state.drumSound2)}
-      if (this.props.grid[0][2] || (this.incoming && this.incoming[0][2])) {drums.push(this.state.drumSound3)}
-      if (this.props.grid[0][3] || (this.incoming && this.incoming[0][3])) {drums.push(this.state.drumSound4)}
-      if (this.props.grid[1][0] || (this.incoming && this.incoming[1][0])) {drums.push(this.state.drumSound5)}
-      if (this.props.grid[1][1] || (this.incoming && this.incoming[1][1])) {drums.push(this.state.drumSound6)}
-      if (this.props.grid[1][2] || (this.incoming && this.incoming[1][2])) {drums.push(this.state.drumSound7)}
-      if (this.props.grid[1][3] || (this.incoming && this.incoming[1][3])) {drums.push(this.state.drumSound8)}
-      if (this.props.grid[2][0] || (this.incoming && this.incoming[2][0])) {drums.push(this.state.drumSound9)}
-      if (this.props.grid[2][1] || (this.incoming && this.incoming[2][1])) {drums.push(this.state.drumSound10)}
-      if (this.props.grid[2][2] || (this.incoming && this.incoming[2][2])) {drums.push(this.state.drumSound11)}
-      if (this.props.grid[2][3] || (this.incoming && this.incoming[2][3])) {drums.push(this.state.drumSound12)}
-      if (this.props.grid[3][0] || (this.incoming && this.incoming[3][0])) {drums.push(this.state.drumSound13)}
-      if (this.props.grid[3][1] || (this.incoming && this.incoming[3][1])) {drums.push(this.state.drumSound14)}
-      if (this.props.grid[3][2] || (this.incoming && this.incoming[3][2])) {drums.push(this.state.drumSound15)}
-      if (this.props.grid[3][3] || (this.incoming && this.incoming[3][3])) {drums.push(this.state.drumSound16)}
+      for (var j = 0; j < 4; j++){
+        for (var k = 0; k < 4; k++){
+          if (this.props.grid[j][k] || (this.incomingGrid && this.incomingGrid[j][k])){
+            drums.push(this.state.drumSounds[j][k])
+          }
+          if (this.props.instruments[j][k] || (this.incomingInstruments && this.incomingInstruments[j][k])){
+            instrus.push(this.state.instruments[j][k])
+          }
+        }
+      }
       var beat = [drums, instrus]
       this.beats[i] = beat
     }
@@ -85,19 +59,16 @@ class Tick extends Component{
   }
 
   render(){
-    socket.on('newSound', (grid) => {
-      this.incoming = grid
+    socket.on('newSound', (grid, instruments) => {
+      this.incomingGrid = grid
+      this.incomingInstruments = instruments
       this.fillBeat()
     })
     return(
       <div>
         <button onClick={this.playLoop}>Play loop</button>
         <button onClick={this.stopLoop}>Stop loop</button>
-        <button onMouseDown={() => this.mouseDown('pos1')} onMouseUp={() => this.mouseUp('pos1')}>Snare</button>
-        <button onMouseDown={() => this.mouseDown('pos2')} onMouseUp={() => this.mouseUp('pos2')}>Sound</button>
-        <button onMouseDown={() => this.mouseDown('pos3')} onMouseUp={() => this.mouseUp('pos3')}>Sound</button>
         <MIDISounds ref={(ref) => (this.midiSounds = ref)} appElementName="app"
-        drums={[this.state.drumTick, this.state.drumSound1, this.state.drumSound2, this.state.drumSound3, this.state.drumSound4, this.state.drumSound4, this.state.drumSound5, this.state.drumSound6, this.state.drumSound7, this.state.drumSound8, this.state.drumSound9, this.state.drumSound10, this.state.drumSound11, this.state.drumSound12, this.state.drumSound13, this.state.drumSound14, this.state.drumSound15, this.state.drumSound16]}
       />
       </div>
     )
@@ -107,6 +78,7 @@ class Tick extends Component{
 const mapState = (state) => {
   return {
     grid: state.grid,
+    instruments: state.instruments,
   }
 }
 
