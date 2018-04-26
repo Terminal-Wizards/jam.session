@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import Tick from './tick'
-import Beat from './beat'
 import { connect } from 'react-redux'
-import { getGrid } from '../store'
+import { getSequencer } from '../store'
 
 class Sequencer extends Component {
+    constructor() {
+        super()
+        this.state = {
+            count: 0
+        }
+    }
 
     onClick = event => {
         const cell = event.target
@@ -13,31 +17,40 @@ class Sequencer extends Component {
     }
 
     toggleState = (x, y) => {
-        const newGrid = [...this.props.grid]
-        const { fetchGrid } = this.props
-        newGrid[x][y] = !newGrid[x][y]
-        fetchGrid(newGrid)
+        const newSequencer = [...this.props.sequencer]
+        const { fetchSequencer } = this.props
+        newSequencer[x][y] = !newSequencer[x][y]
+        fetchSequencer(newSequencer)
+    }
+
+    start = () => {
+        let { count } = this.state
+        setInterval(() => {
+            count = (count + 1) % 16
+            this.setState({ count })
+        }, 125)
+
     }
 
     render() {
-        document.onkeydown = this.onKey
-        document.onkeyup = this.onKey
-        const { grid } = this.props
+        const { count } = this.state
+        const { sequencer } = this.props
         return (
-            <div id="grid">
+            <div id="sequencer">
                 <table>
                     <tbody>
-                        {grid.map((x, xi) => {
+                        {sequencer.map((x, xi) => {
                             return (
                                 <tr key={xi} id={`row-${xi}`}>
                                     {x.map((y, yi) => {
                                         const cellId = `cell-${xi}-${yi}`
-                                        const cellClass = y ? `alive` : ``
+                                        const gridClass = y ? `alive` : ``
+                                        const seqClass = yi === count ? `active` : ``
                                         return (
                                             <td
                                                 id={cellId}
                                                 key={cellId}
-                                                className={cellClass}
+                                                className={`${gridClass} ${seqClass}`}
                                                 onClick={this.onClick}
                                             />
                                         )
@@ -47,24 +60,23 @@ class Sequencer extends Component {
                         })}
                     </tbody>
                 </table>
-                <Tick sounds={grid} />
-                <Beat grid={grid} />
+                <button onClick={this.start}>start</button>
             </div>
         )
     }
 }
 
 const mapState = state => {
-    const { grid } = state
+    const { sequencer } = state
     return {
-        grid
+        sequencer
     }
 }
 
 const mapDispatch = dispatch => {
     return {
-        fetchGrid: grid => {
-            dispatch(getGrid(grid))
+        fetchSequencer: sequencer => {
+            dispatch(getSequencer(sequencer))
         }
     }
 }
