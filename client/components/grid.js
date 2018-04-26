@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Beat from './beat'
 import { connect } from 'react-redux'
 import { getGrid } from '../store'
 
@@ -43,6 +44,7 @@ class Grid extends Component {
                         })}
                     </tbody>
                 </table>
+                <Beat grid={grid} />
             </div>
         )
     }
