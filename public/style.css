@@ -19,3 +19,27 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* GRID */
+
+table {
+  border: 1px solid black;
+  width: 80vh;
+  height: 80vh
+}
+
+#grid {
+  width: 80vh;
+}
+
+td.alive {
+  background-color: rgb(0, 255, 0)
+}
+
+td {
+  background-color: black
+}
+
+button {
+  width: 100%;
+}
