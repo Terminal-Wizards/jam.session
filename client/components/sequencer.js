@@ -4,39 +4,12 @@ import Beat from './beat'
 import { connect } from 'react-redux'
 import { getGrid } from '../store'
 
-class Grid extends Component {
+class Sequencer extends Component {
 
     onClick = event => {
         const cell = event.target
         const x = +cell.id.split('-')[1], y = +cell.id.split('-')[2]
         this.toggleState(x, y)
-    }
-
-    onKey = event => {
-        if (event.repeat) return
-        const { code } = event
-        if (!this.keyMap[code]) return
-        const x = this.keyMap[code][0], y = this.keyMap[code][1]
-        this.toggleState(x, y)
-    }
-
-    keyMap = {
-        Digit7: [0, 0],
-        Digit8: [0, 1],
-        Digit9: [0, 2],
-        Digit0: [0, 3],
-        KeyU: [1, 0],
-        KeyI: [1, 1],
-        KeyO: [1, 2],
-        KeyP: [1, 3],
-        KeyJ: [2, 0],
-        KeyK: [2, 1],
-        KeyL: [2, 2],
-        Semicolon: [2, 3],
-        KeyM: [3, 0],
-        Comma: [3, 1],
-        Period: [3, 2],
-        Slash: [3, 3]
     }
 
     toggleState = (x, y) => {
@@ -96,4 +69,4 @@ const mapDispatch = dispatch => {
     }
 }
 
-export default connect(mapState, mapDispatch)(Grid);
+export default connect(mapState, mapDispatch)(Sequencer);

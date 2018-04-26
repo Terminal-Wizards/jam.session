@@ -1,20 +1,20 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, Grid, Tick} from './components'
-import {me} from './store'
+import { Login, Signup, UserHome, Grid, Tick, Sequencer } from './components'
+import { me } from './store'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
+  componentDidMount() {
     this.props.loadInitialData()
   }
 
-  render () {
-    const {isLoggedIn} = this.props
+  render() {
+    const { isLoggedIn } = this.props
 
     return (
       <Switch>
@@ -23,12 +23,13 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/grid" component={Grid} />
         <Route path="/tick" component={Tick} />
+        <Route path="/sequencer" component={Sequencer} />
         {
           isLoggedIn &&
-            <Switch>
-              {/* Routes placed here are only available after logging in */}
-              <Route path="/home" component={UserHome} />
-            </Switch>
+          <Switch>
+            {/* Routes placed here are only available after logging in */}
+            <Route path="/home" component={UserHome} />
+          </Switch>
         }
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
@@ -50,7 +51,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
+    loadInitialData() {
       dispatch(me())
     }
   }
