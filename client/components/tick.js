@@ -27,12 +27,16 @@ class Tick extends Component{
     }
     this.play = false
     this.state.data=[]
-    this.beats = [[[this.state.drumTick], []]]
+    this.beats = []
   }
 
   componentDidMount() {
     this.setState({ initialized: true });
-    this.playLoop()
+  }
+
+  componentDidUpdate(){
+    console.log('yo')
+    this.fillBeat()
   }
 
   mouseDown = async (target) => {
@@ -50,29 +54,29 @@ class Tick extends Component{
       var drums = [];
       var instrus = []
       if (this.state.tick[i]) {drums.push(this.state.drumTick)}
-      if (this.props.sounds[0][0]) {drums.push(this.state.drumSound1)}
-      if (this.props.sounds[0][1]) {drums.push(this.state.drumSound2)}
-      if (this.props.sounds[0][2]) {drums.push(this.state.drumSound3)}
-      if (this.props.sounds[0][3]) {drums.push(this.state.drumSound4)}
-      if (this.props.sounds[1][0]) {drums.push(this.state.drumSound5)}
-      if (this.props.sounds[1][1]) {drums.push(this.state.drumSound6)}
-      if (this.props.sounds[1][2]) {drums.push(this.state.drumSound7)}
-      if (this.props.sounds[1][3]) {drums.push(this.state.drumSound8)}
-      if (this.props.sounds[2][0]) {drums.push(this.state.drumSound9)}
-      if (this.props.sounds[2][1]) {drums.push(this.state.drumSound10)}
-      if (this.props.sounds[2][2]) {drums.push(this.state.drumSound11)}
-      if (this.props.sounds[2][3]) {drums.push(this.state.drumSound12)}
-      if (this.props.sounds[3][0]) {drums.push(this.state.drumSound13)}
-      if (this.props.sounds[3][1]) {drums.push(this.state.drumSound14)}
-      if (this.props.sounds[3][2]) {drums.push(this.state.drumSound15)}
-      if (this.props.sounds[3][3]) {drums.push(this.state.drumSound16)}
+      if (this.props.grid[0][0]) {drums.push(this.state.drumSound1)}
+      if (this.props.grid[0][1]) {drums.push(this.state.drumSound2)}
+      if (this.props.grid[0][2]) {drums.push(this.state.drumSound3)}
+      if (this.props.grid[0][3]) {drums.push(this.state.drumSound4)}
+      if (this.props.grid[1][0]) {drums.push(this.state.drumSound5)}
+      if (this.props.grid[1][1]) {drums.push(this.state.drumSound6)}
+      if (this.props.grid[1][2]) {drums.push(this.state.drumSound7)}
+      if (this.props.grid[1][3]) {drums.push(this.state.drumSound8)}
+      if (this.props.grid[2][0]) {drums.push(this.state.drumSound9)}
+      if (this.props.grid[2][1]) {drums.push(this.state.drumSound10)}
+      if (this.props.grid[2][2]) {drums.push(this.state.drumSound11)}
+      if (this.props.grid[2][3]) {drums.push(this.state.drumSound12)}
+      if (this.props.grid[3][0]) {drums.push(this.state.drumSound13)}
+      if (this.props.grid[3][1]) {drums.push(this.state.drumSound14)}
+      if (this.props.grid[3][2]) {drums.push(this.state.drumSound15)}
+      if (this.props.grid[3][3]) {drums.push(this.state.drumSound16)}
       var beat = [drums, instrus]
       this.beats[i] = beat
     }
   }
   playLoop = () =>{
-		// this.fillBeat()
-		this.midiSounds.startPlayLoop(this.beats, 120, 1 / 4)
+		this.fillBeat()
+		this.midiSounds.startPlayLoop(this.beats, 120, 1 / 16)
 	}
 	stopLoop = () => {
 		this.midiSounds.stopPlayLoop()
@@ -95,6 +99,10 @@ class Tick extends Component{
   }
 }
 
-const mapState = null
+const mapState = (state) => {
+  return {
+    grid: state.grid,
+  }
+}
 
 export default connect(mapState)(Tick)

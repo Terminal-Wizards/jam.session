@@ -45,11 +45,8 @@ class Grid extends Component {
                         })}
                     </tbody>
                 </table>
-<<<<<<< HEAD
                 <Tick sounds={grid} />
-=======
                 <Beat grid={grid} />
->>>>>>> master
             </div>
         )
     }
