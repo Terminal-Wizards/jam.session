@@ -7,22 +7,22 @@ class Tick extends Component{
     super(props)
     this.state = {
       drumTick: 225,
-      drumSound1: 15,
-      drumSound2: 40,
-      drumSound3: 49,
-      drumSound4: 63,
-      drumSound5: 111,
-      drumSound6: 123,
-      drumSound7: 77,
-      drumSound8: 80,
-      drumSound9: 92,
-      drumSound10: 165,
-      drumSound11: 144,
-      drumSound12: 155,
-      drumSound13: 133,
-      drumSound14: 170,
-      drumSound15: 181,
-      drumSound16: 177,
+      drumSound1: 70,
+      drumSound2: 80,
+      drumSound3: 100,
+      drumSound4: 175,
+      drumSound5: 75,
+      drumSound6: 65,
+      drumSound7: 62,
+      drumSound8: 52,
+      drumSound9: 5,
+      drumSound10: 10,
+      drumSound11: 20,
+      drumSound12: 45,
+      drumSound13: 1,
+      drumSound14: 15,
+      drumSound15: 35,
+      drumSound16: 55,
       tick: [true, false, false, false, true, false, false, false, true, false, false, false, true, false, false, false],
     }
     this.play = false
@@ -32,10 +32,10 @@ class Tick extends Component{
 
   componentDidMount() {
     this.setState({ initialized: true });
+    this.playLoop()
   }
 
   componentDidUpdate(){
-    console.log('yo')
     this.fillBeat()
   }
 
@@ -74,7 +74,7 @@ class Tick extends Component{
       this.beats[i] = beat
     }
   }
-  playLoop = () =>{
+  playLoop = () => {
 		this.fillBeat()
 		this.midiSounds.startPlayLoop(this.beats, 120, 1 / 16)
 	}

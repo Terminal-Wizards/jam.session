@@ -20,7 +20,6 @@ const Beat = (props) => {
   if (grid[3][1]) beat.push(220)
   if (grid[3][2]) beat.push(166)
   if (grid[3][3]) beat.push(188)
-  console.log('hi',beat)
   return (
     <div />
   )

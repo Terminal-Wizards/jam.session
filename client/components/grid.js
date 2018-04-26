@@ -45,11 +45,15 @@ class Grid extends Component {
                         })}
                     </tbody>
                 </table>
-                <Tick sounds={grid} />
+                <Tick />
                 <Beat grid={grid} />
             </div>
         )
     }
+}
+
+export const startBeat = () => {
+  console.log('yeeee')
 }
 
 const mapState = state => {

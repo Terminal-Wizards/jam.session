@@ -6,5 +6,5 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
-export {default as Grid} from './grid'
+export {default as Grid, startBeat} from './grid'
 export {default as Tick} from './tick'
