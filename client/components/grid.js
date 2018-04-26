@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Tick from './tick'
 
 const square = (s) => {
     const x = []
@@ -52,6 +53,7 @@ class Grid extends Component {
                         })}
                     </tbody>
                 </table>
+                <Tick sounds={grid} />
             </div>
         )
     }

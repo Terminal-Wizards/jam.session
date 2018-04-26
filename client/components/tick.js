@@ -2,12 +2,6 @@ import React, { Component } from 'react';
 import MIDISounds from 'midi-sounds-react';
 import {connect} from 'react-redux'
 
-const test = [
-  true, false, false, false,
-  true, false, false, true,
-  true, false, true, false,
-  true, false, false, false]
-
 class Tick extends Component{
   constructor(props){
     super(props)
@@ -33,7 +27,7 @@ class Tick extends Component{
     }
     this.play = false
     this.state.data=[]
-    this.beats = []
+    this.beats = [[[this.state.drumTick], []]]
   }
 
   componentDidMount() {
@@ -56,29 +50,29 @@ class Tick extends Component{
       var drums = [];
       var instrus = []
       if (this.state.tick[i]) {drums.push(this.state.drumTick)}
-      if (this.props.array[0]) {drums.push(this.state.drumSound1)}
-      if (this.props.array[2]) {drums.push(this.state.drumSound2)}
-      if (this.props.array[3]) {drums.push(this.state.drumSound3)}
-      if (this.props.array[4]) {drums.push(this.state.drumSound4)}
-      if (this.props.array[5]) {drums.push(this.state.drumSound5)}
-      if (this.props.array[6]) {drums.push(this.state.drumSound6)}
-      if (this.props.array[7]) {drums.push(this.state.drumSound7)}
-      if (this.props.array[8]) {drums.push(this.state.drumSound8)}
-      if (this.props.array[9]) {drums.push(this.state.drumSound9)}
-      if (this.props.array[10]) {drums.push(this.state.drumSound10)}
-      if (this.props.array[11]) {drums.push(this.state.drumSound11)}
-      if (this.props.array[12]) {drums.push(this.state.drumSound12)}
-      if (this.props.array[13]) {drums.push(this.state.drumSound13)}
-      if (this.props.array[14]) {drums.push(this.state.drumSound14)}
-      if (this.props.array[15]) {drums.push(this.state.drumSound15)}
-      if (this.props.array[16]) {drums.push(this.state.drumSound16)}
+      if (this.props.sounds[0][0]) {drums.push(this.state.drumSound1)}
+      if (this.props.sounds[0][1]) {drums.push(this.state.drumSound2)}
+      if (this.props.sounds[0][2]) {drums.push(this.state.drumSound3)}
+      if (this.props.sounds[0][3]) {drums.push(this.state.drumSound4)}
+      if (this.props.sounds[1][0]) {drums.push(this.state.drumSound5)}
+      if (this.props.sounds[1][1]) {drums.push(this.state.drumSound6)}
+      if (this.props.sounds[1][2]) {drums.push(this.state.drumSound7)}
+      if (this.props.sounds[1][3]) {drums.push(this.state.drumSound8)}
+      if (this.props.sounds[2][0]) {drums.push(this.state.drumSound9)}
+      if (this.props.sounds[2][1]) {drums.push(this.state.drumSound10)}
+      if (this.props.sounds[2][2]) {drums.push(this.state.drumSound11)}
+      if (this.props.sounds[2][3]) {drums.push(this.state.drumSound12)}
+      if (this.props.sounds[3][0]) {drums.push(this.state.drumSound13)}
+      if (this.props.sounds[3][1]) {drums.push(this.state.drumSound14)}
+      if (this.props.sounds[3][2]) {drums.push(this.state.drumSound15)}
+      if (this.props.sounds[3][3]) {drums.push(this.state.drumSound16)}
       var beat = [drums, instrus]
       this.beats[i] = beat
     }
   }
   playLoop = () =>{
-		this.fillBeat()
-		this.midiSounds.startPlayLoop(this.beats, 120, 1 / 16)
+		// this.fillBeat()
+		this.midiSounds.startPlayLoop(this.beats, 120, 1 / 4)
 	}
 	stopLoop = () => {
 		this.midiSounds.stopPlayLoop()
@@ -101,8 +95,6 @@ class Tick extends Component{
   }
 }
 
-const mapState = () => ({
-  array: test,
-})
+const mapState = null
 
 export default connect(mapState)(Tick)
