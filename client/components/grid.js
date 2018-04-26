@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Beat from './beat'
 
 const square = (s) => {
     const x = []
@@ -52,6 +53,7 @@ class Grid extends Component {
                         })}
                     </tbody>
                 </table>
+                <Beat grid={grid} />
             </div>
         )
     }
