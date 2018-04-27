@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Tick from './tick'
-import Beat from './beat'
 import { connect } from 'react-redux'
 import { getGrid } from '../store'
+import PlayBtn from './playBtn'
 
 class Grid extends Component {
 
@@ -74,15 +73,10 @@ class Grid extends Component {
                         })}
                     </tbody>
                 </table>
-                <Tick />
-                <Beat grid={grid} />
+                <PlayBtn />
             </div>
         )
     }
-}
-
-export const startBeat = () => {
-  console.log('yeeee')
 }
 
 const mapState = state => {

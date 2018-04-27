@@ -1,13 +1,16 @@
-const play = false;
 module.exports = (io) => {
+  let first = true
+  let beat = false
   io.on('connection', (socket) => {
     console.log(`A socket connection to the server has been made: ${socket.id}`)
-    if (!play) {
-      socket.emit('play')
-    }
+    console.log(`>>>>>>>>>>>>>>>>>`, first)
+      if (first === true) beat = true
+      if (beat === true) setInterval(() => {
+        socket.broadcast.emit('beat')
+      }, 1000)
 
-    socket.on('newSound', (grid, instruments) => {
-      socket.broadcast.emit('newSound', grid, instruments)
+    socket.on(`newGrid`, grid => {
+      socket.broadcast.emit(`newGrid`, grid)
     })
 
     socket.on('disconnect', () => {
