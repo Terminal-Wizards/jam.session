@@ -24,10 +24,6 @@ class Tick extends Component{
 
   componentDidMount() {
     this.setState({ initialized: true });
-<<<<<<< HEAD
-=======
-    // this.playLoop()
->>>>>>> sequencer visuals
   }
 
   componentDidUpdate(){
