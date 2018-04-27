@@ -59,12 +59,12 @@ class Grid extends Component {
                                 <tr key={xi} id={`row-${xi}`}>
                                     {x.map((y, yi) => {
                                         const cellId = `cell-${xi}-${yi}`
-                                        const cellClass = y ? `alive` : ``
+                                        const gridClass = y ? `alive` : ``
                                         return (
                                             <td
                                                 id={cellId}
                                                 key={cellId}
-                                                className={cellClass}
+                                                className={gridClass}
                                                 onClick={this.onClick}
                                             />
                                         )
