@@ -14,7 +14,6 @@ module.exports = (io) => {
       if (beat === true && first === true) {
         console.log('here')
         stop = setInterval(() => {
-          console.count('in interval')
         socket.broadcast.emit('beat')
         }, 125)
         first = false
@@ -23,6 +22,11 @@ module.exports = (io) => {
     socket.on(`newGrid`, grid => {
       console.count('in newGrid')
       socket.broadcast.emit(`sendGrid`, grid)
+    })
+
+    socket.on(`newInstrument`, instrument => {
+      console.log('he', instrument)
+      socket.broadcast.emit(`sendInstrument`, instrument)
     })
 
     socket.on('disconnect', () => {

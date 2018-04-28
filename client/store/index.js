@@ -5,8 +5,10 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import grid from './grid'
 import sequencer from './sequencer'
+import instruments from './instruments'
+import lead from './lead'
 
-const reducer = combineReducers({user, grid, sequencer})
+const reducer = combineReducers({user, grid, instruments, sequencer, lead})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -17,3 +19,5 @@ export default store
 export * from './user'
 export * from './grid'
 export * from './sequencer'
+export * from './instruments'
+export * from './lead'
