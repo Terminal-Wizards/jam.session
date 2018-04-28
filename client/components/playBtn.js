@@ -24,7 +24,7 @@ class PlayBtn extends Component{
     console.log('yeah', first)
     if  (first){
         first = false
-        socket.on('beat', () => {
+        socket.on('beat', count => {
         this.playDrums()
         this.playInstruments()
       })
@@ -49,7 +49,7 @@ class PlayBtn extends Component{
     let drums = [];
     for (var j = 0; j < 4; j++){
       for (var k = 0; k < 4; k++){
-        if (this.props.grid[j][k] || (this.incomingGrid && this.incomingGrid[j][k])){
+        if (this.props.grid[j][k] || (this.incomingGrid && this.incomingGrid[j][k]) || this.props.step[j][k]){
           drums.push(this.state.drumSounds[j][k])
         }
       }
@@ -75,6 +75,7 @@ const mapState = (state) => {
     grid: state.grid,
     instruments: state.instruments,
     lead: state.lead,
+    step: state.step,
   }
 }
 
