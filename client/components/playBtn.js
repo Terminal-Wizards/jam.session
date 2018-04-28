@@ -18,8 +18,7 @@ class PlayBtn extends Component{
     console.count('playBtn rendered')
     if  (first){
         first = false
-        socket.on('beat', () => {
-        console.count(`beat socket`)
+        socket.on('beat', count => {
         this.playDrums()
       })
     }
@@ -39,12 +38,11 @@ class PlayBtn extends Component{
     let drums = [];
     for (var j = 0; j < 4; j++){
       for (var k = 0; k < 4; k++){
-        if (this.props.grid[j][k] || (this.incomingGrid && this.incomingGrid[j][k])){
+        if (this.props.grid[j][k] || (this.incomingGrid && this.incomingGrid[j][k]) || this.props.step[j][k]){
           drums.push(this.state.drumSounds[j][k])
         }
       }
     }
-    console.log(drums)
     this.midiSounds.playDrumsNow(drums)
   }
 }
@@ -52,6 +50,7 @@ class PlayBtn extends Component{
 const mapState = (state) => {
   return {
     grid: state.grid,
+    step: state.step,
   }
 }
 
