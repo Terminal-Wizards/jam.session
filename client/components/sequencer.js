@@ -14,7 +14,14 @@ class Sequencer extends Component {
     }
   }
 
-  onClick = event => {
+  clickToggle = event => {
+    const cell = event.target
+    const x = +cell.id.split('-')[1], y = +cell.id.split('-')[2]
+    this.toggleState(x, y)
+  }
+
+  dragToggle = event => {
+    if (event.buttons != 1) return
     const cell = event.target
     const x = +cell.id.split('-')[1], y = +cell.id.split('-')[2]
     this.toggleState(x, y)
@@ -78,7 +85,8 @@ class Sequencer extends Component {
                         id={cellId}
                         key={cellId}
                         className={`${gridClass} ${seqClass}`}
-                        onClick={this.onClick}
+                        onMouseEnter={this.dragToggle}
+                        onMouseDown={this.clickToggle}
                       />
                     )
                   })}
