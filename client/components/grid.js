@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { getGrid } from '../store'
+import { getGrid, updateSequencer } from '../store'
 import PlayBtn from './playBtn'
 import socket from '../socket'
 
+let first = true;
+let recording = false
+
 class Grid extends Component {
+    constructor() {
+        super()
+        this.state = {
+            count: 0
+        }
+    }
+
+    record = () => {
+        let step = []
+        for (var i = this.props.grid.length - 1; i >= 0; i--){
+            this.props.grid[i].forEach(cell => step.push(cell))
+        }
+        if (recording) {
+            this.props.updateStep(this.state.count, step)
+        }
+    }
 
     onClick = event => {
         const cell = event.target
@@ -52,6 +71,14 @@ class Grid extends Component {
         document.onkeydown = this.onKey
         document.onkeyup = this.onKey
         const { grid } = this.props
+        if (first) {
+            first = false
+            socket.on('beat', count => {
+                count = (count + 1) % 16
+                this.setState({ count })
+                if (recording) this.record()
+            })
+        }
         return (
             <div id="grid">
                 <table>
@@ -76,6 +103,11 @@ class Grid extends Component {
                         })}
                     </tbody>
                 </table>
+                <button onClick={() => {
+                    recording = !recording
+                }}>
+                    REC
+                </button>
             </div>
         )
     }
@@ -92,6 +124,9 @@ const mapDispatch = dispatch => {
     return {
         fetchGrid: grid => {
             dispatch(getGrid(grid))
+        },
+        updateStep: (count, step) => {
+            dispatch(updateSequencer(count, step))
         }
     }
 }
