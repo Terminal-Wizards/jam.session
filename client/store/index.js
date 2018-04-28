@@ -13,7 +13,7 @@ const reducer = combineReducers({user, grid, sequencer, step, instruments, lead}
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
-  createLogger({collapsed: true})
+  // createLogger({collapsed: true})
 ))
 const store = createStore(reducer, middleware)
 

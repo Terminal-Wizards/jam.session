@@ -79,7 +79,6 @@ class Sequencer extends Component {
             })}
           </tbody>
         </table>
-        <PlayBtn />
       </div>
     )
   }
