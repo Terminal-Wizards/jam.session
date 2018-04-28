@@ -20,7 +20,7 @@ form div {
   display: inline-block;
 }
 
-/* GRID */
+/* GRID/SEQUENCER */
 
 table {
   border: 1px solid black;
@@ -35,7 +35,7 @@ td {
   border: 2px solid black
 }
 
-#grid {
+#grid, #sequencer {
   width: 80vh;
 }
 
@@ -44,10 +44,5 @@ td.alive {
 }
 
 td.active {
-  background-color: black;
   border: 2px solid red
-}
-
-button {
-  width: 100px;
 }

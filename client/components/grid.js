@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Tick from './tick'
-import Beat from './beat'
 import { connect } from 'react-redux'
 import { getGrid } from '../store'
+import PlayBtn from './playBtn'
+import socket from '../socket'
 
 class Grid extends Component {
 
@@ -44,12 +44,14 @@ class Grid extends Component {
         const { fetchGrid } = this.props
         newGrid[x][y] = !newGrid[x][y]
         fetchGrid(newGrid)
+        socket.emit('newGrid', this.props.grid)
     }
 
     render() {
         document.onkeydown = this.onKey
         document.onkeyup = this.onKey
         const { grid } = this.props
+        console.log('grid rendered')
         return (
             <div id="grid">
                 <table>
@@ -74,15 +76,10 @@ class Grid extends Component {
                         })}
                     </tbody>
                 </table>
-                <Tick />
-                <Beat grid={grid} />
+                <PlayBtn />
             </div>
         )
     }
-}
-
-export const startBeat = () => {
-  console.log('yeeee')
 }
 
 const mapState = state => {
