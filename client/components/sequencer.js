@@ -25,6 +25,7 @@ class Sequencer extends Component {
     const { fetchSequencer } = this.props
     newSequencer[x][y] = !newSequencer[x][y]
     fetchSequencer(newSequencer)
+    socket.emit('newSeq', newSequencer)
   }
 
   start = () => {
@@ -36,6 +37,10 @@ class Sequencer extends Component {
 
   }
 
+  loadSeq = (newSequencer) => {
+    this.props.fetchSequencer(newSequencer)
+  }
+
   render() {
     const { count } = this.state
     const { sequencer } = this.props
@@ -44,6 +49,9 @@ class Sequencer extends Component {
       socket.on('beat', count => {
         count = (count + 1) % 16
         this.setState({ count })
+      })
+      socket.on('sendSeq', newSequencer => {
+        this.loadSeq(newSequencer)
       })
     }
     const beatArr = [[], [], [], []]

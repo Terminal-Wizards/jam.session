@@ -29,6 +29,10 @@ module.exports = (io) => {
       socket.broadcast.emit(`sendInstrument`, instrument)
     })
 
+    socket.on(`newSeq`, newSequencer => {
+      socket.broadcast.emit(`sendSeq`, newSequencer)
+    })
+
     socket.on('disconnect', () => {
       console.log(`Connection ${socket.id} has left the building`)
       start = true
