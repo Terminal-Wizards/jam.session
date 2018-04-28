@@ -14,7 +14,6 @@ module.exports = (io) => {
     console.log('>>>>', first)
     if (beat === true && first === true) {
       let count = 0;
-      console.log('here')
       stop = setInterval(() => {
         count = (count + 1) % 16
         socket.broadcast.emit('beat', count)
@@ -23,12 +22,10 @@ module.exports = (io) => {
     }
 
     socket.on(`newGrid`, grid => {
-      console.count('in newGrid')
       socket.broadcast.emit(`sendGrid`, grid)
     })
 
     socket.on(`newInstrument`, instrument => {
-      console.log('he', instrument)
       socket.broadcast.emit(`sendInstrument`, instrument)
     })
 

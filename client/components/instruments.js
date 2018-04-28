@@ -93,7 +93,6 @@ class Instruments extends Component {
                         })}
                     </tbody>
                 </table>
-                <PlayBtn lead={this.state.lead} />
             </div>
         )
     }

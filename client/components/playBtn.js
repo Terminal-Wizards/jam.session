@@ -21,7 +21,6 @@ class PlayBtn extends Component{
   }
 
   render(){
-    console.log('yeah', first)
     if  (first){
         first = false
         socket.on('beat', count => {
@@ -32,7 +31,6 @@ class PlayBtn extends Component{
         this.incomingGrid = grid
       })
       socket.on('sendInstrument', newInstrument => {
-        console.log('yaaa')
         this.incomingInstruments = newInstrument
       })
     }
