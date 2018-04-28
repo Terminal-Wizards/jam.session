@@ -6,6 +6,7 @@ module.exports = (io) => {
   io.on('connection', (socket) => {
     console.log(`A socket connection to the server has been made: ${socket.id}`)
     console.log('>>>>>>', start)
+
     if (start === true) {
       beat = true
       start = false
@@ -24,6 +25,11 @@ module.exports = (io) => {
     socket.on(`newGrid`, grid => {
       console.count('in newGrid')
       socket.broadcast.emit(`sendGrid`, grid)
+    })
+
+    socket.on(`newInstrument`, instrument => {
+      console.log('he', instrument)
+      socket.broadcast.emit(`sendInstrument`, instrument)
     })
 
     socket.on('disconnect', () => {
