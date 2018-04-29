@@ -7,13 +7,6 @@ import PlayBtn from './playBtn';
 
 let first = true;
 class Sequencer extends Component {
-  constructor() {
-    super()
-    this.state = {
-      count: 0
-    }
-  }
-
   clickToggle = event => {
     const cell = event.target
     const x = +cell.id.split('-')[1], y = +cell.id.split('-')[2]
@@ -35,38 +28,24 @@ class Sequencer extends Component {
     socket.emit('newSeq', newSequencer)
   }
 
-  start = () => {
-    let { count } = this.state
-    setInterval(() => {
-      count = (count + 1) % 16
-      this.setState({ count })
-    }, 125)
-
-  }
-
   loadSeq = (newSequencer) => {
     this.props.fetchSequencer(newSequencer)
   }
 
   render() {
-    const { count } = this.state
     const { sequencer } = this.props
     if (first) {
       first = false
-      socket.on('beat', count => {
-        count = (count + 1) % 16
-        this.setState({ count })
-      })
       socket.on('sendSeq', newSequencer => {
         this.loadSeq(newSequencer)
       })
     }
     const beatArr = [[], [], [], []]
     sequencer.forEach((row, idx) => {
-      if (idx < 4) beatArr[0].unshift(row[count])
-      else if (idx < 8) beatArr[1].unshift(row[count])
-      else if (idx < 12) beatArr[2].unshift(row[count])
-      else beatArr[3].unshift(row[count])
+      if (idx < 4) beatArr[0].unshift(row[this.props.metronome])
+      else if (idx < 8) beatArr[1].unshift(row[this.props.metronome])
+      else if (idx < 12) beatArr[2].unshift(row[this.props.metronome])
+      else beatArr[3].unshift(row[this.props.metronome])
     })
     this.props.fetchStep(beatArr)
     return (
@@ -79,7 +58,7 @@ class Sequencer extends Component {
                   {x.map((y, yi) => {
                     const cellId = `cell-${xi}-${yi}`
                     const gridClass = y ? `alive` : ``
-                    const seqClass = yi === count ? `active` : ``
+                    const seqClass = yi === this.props.metronome ? `active` : ``
                     return (
                       <td
                         id={cellId}
@@ -101,9 +80,10 @@ class Sequencer extends Component {
 }
 
 const mapState = state => {
-  const { sequencer } = state
+  const { sequencer, metronome } = state
   return {
-    sequencer
+    sequencer,
+    metronome
   }
 }
 

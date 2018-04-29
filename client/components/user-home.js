@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Sequencer from './sequencer'
-import Grid from './grid'
+import {Link} from 'react-router-dom'
+import Drums from './drums'
 import Instruments from './instruments'
-import PlayBtn from './playBtn'
+
 
 
 /**
@@ -15,14 +15,7 @@ export const UserHome = (props) => {
 
   return (
     <div>
-      <div>
-      <Grid />
-      <Sequencer />
-      </div>
-      <div>
-      <Instruments />
-      </div>
-      <PlayBtn />
+      <p>Welcome to Jam.Session!</p>
     </div>
   )
 }

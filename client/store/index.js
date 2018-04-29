@@ -8,8 +8,9 @@ import sequencer from './sequencer'
 import instruments from './instruments'
 import lead from './lead'
 import step from './step'
+import metronome from './metronome'
 
-const reducer = combineReducers({user, grid, sequencer, step, instruments, lead})
+const reducer = combineReducers({user, grid, sequencer, step, instruments, lead, metronome})
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -24,3 +25,4 @@ export * from './sequencer'
 export * from './instruments'
 export * from './lead'
 export * from './step'
+export * from './metronome'
