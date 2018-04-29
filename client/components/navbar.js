@@ -8,24 +8,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <h1>JAM.SESSION</h1>
     <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/grid">Grid</Link>
-          <Link to="/sequencer">Sequencer</Link>
-          <Link to="/instruments">Instruments</Link>
-        </div>
-      )}
+      <div>
+        <Link to="/drums">Drums</Link>
+        <Link to="/lead">Lead</Link>
+      </div>
     </nav>
     <hr />
   </div>

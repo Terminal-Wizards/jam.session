@@ -8,20 +8,14 @@ let first = true;
 let recording = false
 
 class Grid extends Component {
-    constructor() {
-        super()
-        this.state = {
-            count: 0
-        }
-    }
-
-    record = () => {
+    record = (count) => {
         let step = []
         for (var i = this.props.grid.length - 1; i >= 0; i--){
             this.props.grid[i].forEach(cell => step.push(cell))
         }
         if (recording) {
-            this.props.updateStep(this.state.count, step)
+            this.props.updateStep((count + 1) % 16, step)
+            socket.emit('newSeq', this.props.sequencer)
         }
     }
 
@@ -32,7 +26,7 @@ class Grid extends Component {
     }
 
     onKey = event => {
-        console.log(`press`)
+        if (event.code === "ShiftLeft") recording = !recording
         if (event.repeat) return
         const { code } = event
         if (!this.keyMap[code]) return
@@ -74,9 +68,7 @@ class Grid extends Component {
         if (first) {
             first = false
             socket.on('beat', count => {
-                count = (count + 1) % 16
-                this.setState({ count })
-                if (recording) this.record()
+                if (recording) this.record(count)
             })
         }
         return (
@@ -103,20 +95,17 @@ class Grid extends Component {
                         })}
                     </tbody>
                 </table>
-                <button onClick={() => {
-                    recording = !recording
-                }}>
-                    REC
-                </button>
             </div>
         )
     }
 }
 
 const mapState = state => {
-    const { grid } = state
+    const { grid, metronome, sequencer } = state
     return {
-        grid
+        grid,
+        metronome,
+        sequencer
     }
 }
 

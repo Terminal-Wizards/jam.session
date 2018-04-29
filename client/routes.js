@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { Login, Signup, UserHome, Grid, Sequencer, Instruments } from './components'
+import { Login, Signup, UserHome, Grid, Sequencer, Instruments, Drums } from './components'
 import { me } from './store'
 
 /**
@@ -18,20 +18,10 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/grid" component={Grid} />
-        <Route path="/sequencer" component={Sequencer} />
-        <Route path="/instruments" component={Instruments} />
-        {
-          isLoggedIn &&
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
-          </Switch>
-        }
-        {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route path="/home" component={UserHome} />
+        <Route path="/drums" component={Drums} />
+        <Route path="/lead" component={Instruments} />
+        <Route component={UserHome} />
       </Switch>
     )
   }
