@@ -19,12 +19,11 @@ class Routes extends Component {
       <div id="routes">
         <Switch>
           {/* Routes placed here are available to all visitors */}
-          <Route path="/home" component={UserHome} />
           <Route path="/drums" component={Drums} />
           <Route path="/lead" component={Instruments} />
           <Route path="/bass" component={Bass} />
           <Route path ="/instrumentsView" component={InstrumentsView} />
-          <Route component={UserHome} />
+          <Route component={Drums} />
         </Switch>
       </div>
     )
