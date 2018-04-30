@@ -69,12 +69,14 @@ html {
   color: white;
   font-size: 50px;
   margin: 0px;
-  font-family: 'Courier New', Courier, monospace
+  font-family: 'Courier New', Courier, monospace;
+  text-shadow: 2px 2px 1px black, 3px 3px 3px rgb(0, 255, 0)
 }
 
 .link {
   color: white;
   font-size: 30px;
   margin: 10px;
+  font-family: 'Courier New', Courier, monospace;
   text-align: center
 }

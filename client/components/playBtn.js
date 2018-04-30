@@ -12,8 +12,8 @@ class PlayBtn extends Component{
     this.state = {
       drumSounds: [[70, 80, 100, 175], [75, 65, 62, 52], [5, 10, 20, 45], [1, 15, 35, 55]],
       leadNotes:[
-        [86, 88, 91, 93],
-        [76, 79, 81, 84],
+        [84, 86, 88, 91],
+        [74, 76, 79, 81],
         [64, 67, 69, 72],
         [55, 57, 60, 62]
       ],
@@ -34,6 +34,9 @@ class PlayBtn extends Component{
       })
       socket.on('sendInstrument', newInstrument => {
         this.incomingInstruments = newInstrument
+      })
+      socket.on('sendBass', newBass => {
+        this.incomingBass = newBass
       })
     }
 

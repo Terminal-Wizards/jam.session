@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
@@ -9,9 +9,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
     <nav className="nav-bar">
       <h1 className="jam">JAM.SESSION</h1>
       <div>
-        <Link to="/drums" className="link">Drums</Link>
-        <Link to="/lead" className="link">Lead</Link>
-        <Link to="/bass" className="link">Bass</Link>
+        <NavLink to="/drums" className="link">Drums</NavLink>
+        <NavLink to="/lead" className="link">Lead</NavLink>
+        <NavLink to="/bass" className="link">Bass</NavLink>
       </div>
     </nav>
     <hr />

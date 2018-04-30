@@ -33,6 +33,10 @@ module.exports = (io) => {
       socket.broadcast.emit(`sendSeq`, newSequencer)
     })
 
+    socket.on('newBass', newBass => {
+      socket.broadcast.emit(`sendBass`, newBass)
+    })
+
     socket.on('disconnect', () => {
       console.log(`Connection ${socket.id} has left the building`)
       start = true

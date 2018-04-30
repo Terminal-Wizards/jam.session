@@ -26,23 +26,23 @@ class Instruments extends Component {
     }
 
     keyMap = {
-        Digit7: [0, 0],
-        Digit8: [0, 1],
-        Digit9: [0, 2],
-        Digit0: [0, 3],
-        KeyU: [1, 0],
-        KeyI: [1, 1],
-        KeyO: [1, 2],
-        KeyP: [1, 3],
-        KeyJ: [2, 0],
-        KeyK: [2, 1],
-        KeyL: [2, 2],
-        Semicolon: [2, 3],
-        KeyM: [3, 0],
-        Comma: [3, 1],
-        Period: [3, 2],
-        Slash: [3, 3]
-    }
+      Digit1: [0, 0],
+      Digit2: [0, 1],
+      Digit3: [0, 2],
+      Digit4: [0, 3],
+      KeyQ: [1, 0],
+      KeyW: [1, 1],
+      KeyE: [1, 2],
+      KeyR: [1, 3],
+      KeyA: [2, 0],
+      KeyS: [2, 1],
+      KeyD: [2, 2],
+      KeyF: [2, 3],
+      KeyZ: [3, 0],
+      KeyX: [3, 1],
+      KeyC: [3, 2],
+      KeyV: [3, 3]
+  }
 
     toggleState = (x, y) => {
         const newInstruments = [...this.props.instruments]
