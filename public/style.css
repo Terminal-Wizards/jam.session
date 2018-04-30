@@ -80,3 +80,7 @@ html {
   font-family: 'Courier New', Courier, monospace;
   text-align: center
 }
+
+.highlight {
+  color: rgb(0, 255, 0)
+}
