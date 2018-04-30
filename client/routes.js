@@ -16,15 +16,17 @@ class Routes extends Component {
   render() {
     const { isLoggedIn } = this.props
     return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route path="/home" component={UserHome} />
-        <Route path="/drums" component={Drums} />
-        <Route path="/lead" component={Instruments} />
-        <Route path="/bass" component={Bass} />
-        <Route path ="/instrumentsView" component={InstrumentsView} />
-        <Route component={UserHome} />
-      </Switch>
+      <div id="routes">
+        <Switch>
+          {/* Routes placed here are available to all visitors */}
+          <Route path="/home" component={UserHome} />
+          <Route path="/drums" component={Drums} />
+          <Route path="/lead" component={Instruments} />
+          <Route path="/bass" component={Bass} />
+          <Route path ="/instrumentsView" component={InstrumentsView} />
+          <Route component={UserHome} />
+        </Switch>
+      </div>
     )
   }
 }

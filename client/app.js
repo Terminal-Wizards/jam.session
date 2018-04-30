@@ -8,9 +8,11 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      <Routes />
-      <Sequencer />
-      <PlayBtn />
+      <div id="main">
+        <Routes />
+        <Sequencer />
+      </div>
+      <PlayBtn className="playBtn" />
     </div>
   )
 }

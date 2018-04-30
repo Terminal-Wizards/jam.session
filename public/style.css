@@ -1,3 +1,5 @@
+
+
 body {
   font-family: sans-serif;
 }
@@ -28,6 +30,7 @@ table {
   height: 80vh;
   border-spacing: 2px;
   border-collapse: separate;
+  margin-bottom: 10px
 }
 
 td {
@@ -45,4 +48,33 @@ td.alive {
 
 td.active {
   border: 2px solid red
+}
+
+#main {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+html {
+  background: rgb(148, 148, 148)
+}
+
+.jam {
+  color: white;
+  font-size: 50px;
+  margin: 0px;
+  font-family: 'Courier New', Courier, monospace
+}
+
+.link {
+  color: white;
+  font-size: 30px;
+  margin: 10px;
+  text-align: center
 }
