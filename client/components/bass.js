@@ -61,11 +61,6 @@ class Bass extends Component {
         const { bass } = this.props
         return (
             <div id="grid">
-                <select onChange={this.changeBassNum}>
-                  <option value={430}>Synth Bass</option>
-                  <option value={435}>Synth Bass 2</option>
-                  <option value={382}>Sub Bass</option>
-                </select>
                 <table>
                     <tbody>
                         {bass.map((x, xi) => {
@@ -88,6 +83,12 @@ class Bass extends Component {
                         })}
                     </tbody>
                 </table>
+                <div>Select an Instrument</div>
+                <select onChange={this.changeBassNum}>
+                  <option value={430}>Synth Bass</option>
+                  <option value={435}>Synth Bass 2</option>
+                  <option value={382}>Sub Bass</option>
+                </select>
             </div>
         )
     }

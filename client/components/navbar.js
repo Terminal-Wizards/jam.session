@@ -6,12 +6,12 @@ import {logout} from '../store'
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>JAM.SESSION</h1>
-    <nav>
+    <nav className="nav-bar">
+      <h1 className="jam">JAM.SESSION</h1>
       <div>
-        <Link to="/drums">Drums</Link>
-        <Link to="/lead">Lead</Link>
-        <Link to="/bass">Bass</Link>
+        <Link to="/drums" className="link">Drums</Link>
+        <Link to="/lead" className="link">Lead</Link>
+        <Link to="/bass" className="link">Bass</Link>
       </div>
     </nav>
     <hr />

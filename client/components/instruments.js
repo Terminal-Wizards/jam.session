@@ -62,15 +62,6 @@ class Instruments extends Component {
         const { instruments } = this.props
         return (
             <div id="grid">
-                <select onChange={this.changeLead}>
-                  <option value={44}>Electric Piano</option>
-                  <option value={123}>Vibraphone</option>
-                  <option value={868}>Synth Lead</option>
-                  <option value={794}>Pan Flute</option>
-                  <option value={929}>Synth Pad</option>
-                  <option value={921}>Synth Lead 2</option>
-                  <option value={1110}>Spooky Synth</option>
-                </select>
                 <table>
                     <tbody>
                         {instruments.map((x, xi) => {
@@ -93,6 +84,16 @@ class Instruments extends Component {
                         })}
                     </tbody>
                 </table>
+                <div>Select an Instrument</div>
+                <select onChange={this.changeLead}>
+                  <option value={44}>Electric Piano</option>
+                  <option value={123}>Vibraphone</option>
+                  <option value={868}>Synth Lead</option>
+                  <option value={794}>Pan Flute</option>
+                  <option value={929}>Synth Pad</option>
+                  <option value={921}>Synth Lead 2</option>
+                  <option value={1110}>Spooky Synth</option>
+                </select>
             </div>
         )
     }
