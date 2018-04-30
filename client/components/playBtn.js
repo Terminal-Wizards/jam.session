@@ -11,12 +11,13 @@ class PlayBtn extends Component{
     super(props)
     this.state = {
       drumSounds: [[70, 80, 100, 175], [75, 65, 62, 52], [5, 10, 20, 45], [1, 15, 35, 55]],
-      instrumentNotes:[
+      leadNotes:[
         [86, 88, 91, 93],
         [76, 79, 81, 84],
-        [64 - 24, 67 - 24, 69 - 24, 72 - 24],
-        [55 - 24, 57 - 24, 60 - 24, 62 - 24]
-      ]
+        [64, 67, 69, 72],
+        [55, 57, 60, 62]
+      ],
+      bassNotes: []
     }
   }
 
@@ -25,7 +26,8 @@ class PlayBtn extends Component{
         first = false
         socket.on('beat', count => {
         this.playDrums()
-        this.playInstruments()
+        this.playLead()
+        this.playBass()
       })
       socket.on(`sendGrid`, grid => {
         this.incomingGrid = grid
@@ -55,16 +57,27 @@ class PlayBtn extends Component{
     this.midiSounds.playDrumsNow(drums)
   }
 
-  playInstruments = () => {
-    let instrumentNotes = [];
+  playLead = () => {
+    let leadNotes = [];
     for (var j = 0; j < 4; j++){
       for (var k = 0; k < 4; k++){
         if (this.props.instruments[j][k] || (this.incomingInstruments && this.incomingInstruments[j][k])){
-          instrumentNotes.push(this.state.instrumentNotes[j][k])
+          leadNotes.push(this.state.leadNotes[j][k])
         }
       }
     }
-    this.midiSounds.playChordNow(this.props.lead, instrumentNotes, .125)
+    this.midiSounds.playChordNow(this.props.lead, leadNotes, .125)
+  }
+  playBass = () => {
+    let bassNotes = [];
+    for (var j = 0; j < 4; j++){
+      for (var k = 0; k < 4; k++){
+        if (this.props.bass[j][k] || (this.incomingBass && this.incomingBass[j][k])){
+          bassNotes.push((this.state.leadNotes[j][k] - 24))
+        }
+      }
+    }
+    this.midiSounds.playChordNow(this.props.bassNum, bassNotes, .125)
   }
 }
 
@@ -74,6 +87,8 @@ const mapState = (state) => {
     instruments: state.instruments,
     lead: state.lead,
     step: state.step,
+    bass: state.bass,
+    bassNum: state.bassNum
   }
 }
 
