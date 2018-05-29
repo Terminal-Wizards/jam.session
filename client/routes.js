@@ -23,7 +23,7 @@ class Routes extends Component {
           <Route path="/lead" component={Instruments} />
           <Route path="/bass" component={Bass} />
           <Route path ="/instrumentsView" component={InstrumentsView} />
-          <Route component={Drums} />
+          <Route component={UserHome} />
         </Switch>
       </div>
     )
