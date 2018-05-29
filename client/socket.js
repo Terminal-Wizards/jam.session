@@ -4,6 +4,7 @@ import store, {getBeat} from './store'
 
 socket.on('connect', () => {
   console.log('Connected!')
+  console.log('ooh', window.location.origin)
 })
 
 socket.on('beat', count => {

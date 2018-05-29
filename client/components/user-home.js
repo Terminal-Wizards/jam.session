@@ -15,7 +15,12 @@ export const UserHome = (props) => {
 
   return (
     <div>
-      <p>Welcome to Jam.Session!</p>
+      <p className="jam">Welcome to Jam.Session!</p>
+      <p> Join a Jam.Sesh </p>
+      <form>
+        <input />
+        <button type='submit'>Submit</button>
+      </form>
     </div>
   )
 }

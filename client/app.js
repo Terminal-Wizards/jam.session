@@ -10,7 +10,7 @@ const App = () => {
       <Navbar />
       <div id="main">
         <Routes />
-        <Sequencer />
+        {/* <Sequencer /> */}
       </div>
       <PlayBtn className="playBtn" />
     </div>
