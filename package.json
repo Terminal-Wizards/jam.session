@@ -5,7 +5,7 @@
   "engines": {
     "node": ">= 7.0.0"
   },
-  "homepage":"https://terminal-wizards.github.io/jam.session/",
+  "homepage": "https://terminal-wizards.github.io/jam.session/",
   "main": "index.js",
   "scripts": {
     "build-client": "webpack",
