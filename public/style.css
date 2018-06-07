@@ -65,12 +65,22 @@ html {
   background: rgb(148, 148, 148)
 }
 
+#title {
+  display: inline-flex;
+}
+
 .jam {
   color: white;
   font-size: 50px;
   margin: 0px;
   font-family: 'Courier New', Courier, monospace;
   text-shadow: 2px 2px 1px black, 3px 3px 3px rgb(0, 255, 0)
+}
+
+.github {
+  width: 175px;
+  height: 50px;
+  margin: 0 10px;
 }
 
 .link {
