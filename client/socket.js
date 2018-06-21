@@ -7,6 +7,7 @@ socket.on('connect', () => {
 })
 
 socket.on('beat', count => {
+  console.log(count)
   count = (count + 1) % 16
   store.dispatch(getBeat(count))
 })

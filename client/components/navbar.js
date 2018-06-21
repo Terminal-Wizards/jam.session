@@ -7,10 +7,11 @@ import { logout } from '../store'
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
     <nav className="nav-bar">
-        <a id="title" href="https://github.com/chrisstephenmiller/jam-session" target="_blank" rel="noopener noreferrer">
-          <h1 className="jam">JAM.SOCKETS</h1>
-          <img className="github" src="./github.png" />
-        </a>
+      <a id="title" href="https://github.com/chrisstephenmiller/jam-session" target="_blank" rel="noopener noreferrer">
+        <h1 className="jam">JAM.SOCKETS</h1>
+        <img className="github" src="./github.png" />
+      </a>
+      <button className="start" onClick={() => location.reload()}>Start</button>
       <div id="links">
         <NavLink to="/drums" className="link" activeClassName="highlight">Drums</NavLink>
         <NavLink to="/lead" className="link" activeClassName="highlight">Lead</NavLink>

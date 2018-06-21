@@ -83,12 +83,22 @@ html {
   margin: 0 10px;
 }
 
-.link {
+.link, .start {
   color: white;
   font-size: 30px;
   margin: 10px;
   font-family: 'Courier New', Courier, monospace;
   text-align: center
+}
+
+.start {
+  color: rgb(0, 255, 0);
+  background-color: grey
+}
+
+.start:hover {
+  color: rgb(0, 255, 0);
+  box-shadow: 1px 1px 1px black;
 }
 
 .highlight {
