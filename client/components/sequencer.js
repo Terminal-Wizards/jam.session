@@ -50,6 +50,7 @@ class Sequencer extends Component {
     this.props.fetchStep(beatArr)
     return (
       <div id="sequencer">
+      {console.log('in render')}
         <table>
           <tbody>
             {sequencer.map((x, xi) => {
